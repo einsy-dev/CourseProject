@@ -2,6 +2,9 @@ import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/reac
 import type { LinksFunction } from "@remix-run/node";
 
 import "./tailwind.css";
+import { MyContext } from "./shared";
+import { Footer, Header, Sidebar } from "./widgets";
+import { LoaderCircle } from "lucide-react";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -26,7 +29,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className="h-[90vh]">
-        {children}
+        <MyContext>
+          <Header />
+          <div className="flex relative h-full overflow-hidden">
+            <main className="max-w-[1200px] w-full mx-auto p-5 shadow-[0px_0px_50px_0px_rgba(0,0,0,0.1)]">{children}</main>
+            <Sidebar />
+          </div>
+          <Footer />
+        </MyContext>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -39,5 +49,5 @@ export default function App() {
 }
 
 export function HydrateFallback() {
-  return <p>Loading...</p>;
+  return <LoaderCircle width={40} height={40} className="animate-[spin_0.5s_linear_infinite] absolute top-1/2 left-1/2 stroke-red-700" />;
 }

@@ -2,11 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  /* @apply bg-white dark:bg-gray-950;
-
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  } */
+@layer components {
+  .btn {
+    @apply px-2 py-1 border rounded-lg shadow-lg hover:bg-blue-600 hover:text-white hover:border-blue-600;
+  }
 }

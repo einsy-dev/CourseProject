@@ -1,9 +1,7 @@
 import { type MetaFunction } from "@remix-run/node";
-import { Link, useSearchParams } from "@remix-run/react";
+import { Form, useSearchParams } from "@remix-run/react";
 import { useEffect } from "react";
-import { MyContext } from "~/shared/hooks/useContext";
-
-import { Footer, Header } from "~/widgets";
+import { Button, Checkbox, Input } from "~/shared";
 
 export const meta: MetaFunction = () => {
   return [{ title: "New Remix App" }, { name: "description", content: "Welcome to Remix!" }];
@@ -20,16 +18,15 @@ export default function Auth() {
   }, [setSearchParams, type]);
 
   return (
-    <MyContext>
-      <Header />
-      <main className="flex h-[100%] bg-slate-400">
-        {type == "login" && (
-          <div className="">
-            <Link to="/">Home</Link>
-          </div>
-        )}
-      </main>
-      <Footer />
-    </MyContext>
+    <div>
+      <Form method="post" className="flex flex-col gap-5 w-fit">
+        <Input title="Email" type="password" placeholder="ivanov@example.com" />
+        <Input title="Email" type="text" placeholder="ivanov@example.com" />
+        <Checkbox>
+          <span>Lol</span>
+        </Checkbox>
+        <Button type="submit" title="Войти" />
+      </Form>
+    </div>
   );
 }

@@ -1,18 +1,26 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, Dispatch, SetStateAction, useContext, useState } from "react";
+
+interface ContextI {
+  sidebar: boolean;
+  edit: boolean;
+}
 
 const defaultContext = {
-  context: null,
-  setContext: () => null
+  sidebar: false,
+  edit: false
 };
 
-export const Context = createContext<{ context: any; setContext: (context: any) => void }>(defaultContext);
+const Context = createContext<{ context: ContextI; setContext: Dispatch<SetStateAction<ContextI>> }>({
+  context: defaultContext,
+  setContext: () => defaultContext
+});
 
 export function MyContext({ children }: any) {
-  const [context, setContext] = useState(null);
+  const [context, setContext] = useState<ContextI>(defaultContext);
   return <Context.Provider value={{ context, setContext }}>{children}</Context.Provider>;
 }
 
-export function useMyContext() {
-  const { context, setContext } = useContext(Context);
+export function useMyContext(): [context: ContextI, setContext: Dispatch<SetStateAction<ContextI>>] {
+  const { context, setContext } = useContext<{ context: ContextI; setContext: Dispatch<SetStateAction<ContextI>> }>(Context);
   return [context!, setContext!];
 }
