@@ -6,14 +6,27 @@ const prisma = new PrismaClient();
 
 async function main() {
   await prisma.user.upsert({
-    where: { email: 'student@crystal.com' },
+    where: { email: 'alex@example.com' },
     update: {
       name: 'Алексей Павлов Павлович',
-      email: 'student@crystal.com',
+      email: 'alex@example.com',
     },
     create: {
       name: 'Алексей Павлов Павлович',
-      email: 'student@crystal.com',
+      email: 'alex@example.com',
+      password: 'password',
+    },
+  });
+  await prisma.user.upsert({
+    where: { email: 'parent@example.com' },
+    update: {
+      name: 'Сергей Павлов Павлович',
+      email: 'serg@example.com',
+    },
+    create: {
+      name: 'Алексей Павлов Павлович',
+      email: 'serg@example.com',
+      password: 'password',
     },
   });
 }

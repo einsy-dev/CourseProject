@@ -1,0 +1,18 @@
+model FormItems {
+  id         String   @id @default(cuid())
+  formId     String
+  type       String
+  label      String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  Form       Form     @relation(fields: [formId], references: [id])
+}
+
+model Form {
+  id          String      @id @default(cuid())
+  title       String
+  description String
+  items       FormItems[]
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+}
