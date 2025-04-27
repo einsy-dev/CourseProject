@@ -2,8 +2,15 @@ model User {
   id         String   @id @default(cuid())
   name       String
   email      String   @unique
-  role       String   @default("student")
-  password   String   
+  role       Role     @default(user)
+  password   String
+  forms      Form[]
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+}
+
+enum Role {
+  user
+  moderator
+  admin
 }

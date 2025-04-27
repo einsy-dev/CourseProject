@@ -1,18 +1,24 @@
-model FormItems {
-  id         String   @id @default(cuid())
-  formId     String
-  type       String
-  label      String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  Form       Form     @relation(fields: [formId], references: [id])
-}
-
 model Form {
-  id          String      @id @default(cuid())
+  id          String     @id @default(cuid())
   title       String
   description String
-  items       FormItems[]
-  created_at  DateTime    @default(now())
-  updated_at  DateTime    @updatedAt
+  items       FormItem[]
+  author      User       @relation(fields: [authorId], references: [id])
+  authorId    String
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @updatedAt
+}
+
+model FormItem {
+  id         String   @id @default(cuid())
+  type       FormType
+  label      String   @default("")
+  form       Form     @relation(fields: [formId], references: [id])
+  formId     String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+enum FormType {
+  yesNo
 }

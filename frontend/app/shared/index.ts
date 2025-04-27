@@ -6,3 +6,5 @@ export { Textarea } from "./ui/Textarea";
 export { Button } from "./ui/Button";
 export { Checkbox } from "./ui/Checkbox";
 export { Radio } from "./ui/Radio";
+export { Label } from "./ui/Label";
+export { req } from "./api";

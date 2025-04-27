@@ -31,8 +31,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body className="h-[90vh]">
         <MyContext>
           <Header />
-          <div className="flex relative h-full overflow-hidden">
-            <main className="max-w-[1200px] w-full mx-auto p-5 shadow-[0px_0px_50px_0px_rgba(0,0,0,0.1)]">{children}</main>
+          <div className="flex relative h-full overflow-x-hidden">
+            <main className="max-w-[1200px] w-full mx-auto p-5 shadow-[0px_0px_50px_0px_rgba(0,0,0,0.1)] flex justify-center items-center">{children}</main>
             <Sidebar />
           </div>
           <Footer />

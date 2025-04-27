@@ -14,17 +14,17 @@ export class UserService {
     });
   }
 
-  async findAll(): Promise<User[]> {
+  async getAll(): Promise<User[]> {
     return await this.prisma.user.findMany();
   }
 
-  async create(user: User): Promise<User> {
+  async create(user: { name: string; email: string; password: string }): Promise<User> {
     return await this.prisma.user.create({
       data: user,
     });
   }
 
-  async update(id: string, user: User): Promise<User> {
+  async update(id: string, user: { name: string; email: string; password: string }): Promise<User> {
     return await this.prisma.user.update({
       where: {
         id,
